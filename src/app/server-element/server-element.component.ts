@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, ngOnChanges, simpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -7,12 +7,20 @@ import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
   //encapsulation: ViewEncapsulation.Emulated
   //to extend the behaviour to the entire app (None - entire app, Emulated - default, Native - uses shadow DOM only in browsers that support it)
 })
-export class ServerElementComponent implements OnInit {
+export class ServerElementComponent implements OnInit, ngOnChanges {
   @Input('srvElement') element: {type: string, name: string, content: string};
+  @Input() name 
+  constructor() {
+    console.log("Constructor called!");
+  }
 
-  constructor() { }
+  ngOnChanges(changes: simpleChanges) {
+    console.log("ngOnChanges called!");
+    console.log(changes);
+  }
 
   ngOnInit() {
+    console.log("ngOnInit called!");
   }
 
 }
