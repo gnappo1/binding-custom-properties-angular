@@ -11,7 +11,8 @@ import { Component,
          AfterViewChecked,
          OnDestroy,
          ViewChild,
-         ElementRef } from '@angular/core';
+         ElementRef,
+         ContentChild } from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -33,6 +34,7 @@ export class ServerElementComponent implements
   @Input('srvElement') element: {type: string, name: string, content: string};
   @Input() name: string;
   @ViewChild('heading') header: ElementRef;
+  @ContentChild('contentParagraph') paragraph: ElementRef;
 
   constructor() {
     console.log("Constructor called!");
@@ -54,6 +56,7 @@ export class ServerElementComponent implements
   ngAfterContentInit() {
     console.log("ngAfterContentInit called!");
     console.log(this.header.nativeElement);
+    console.log(this.contentParagraph.nativeElement);
   }
 
   ngAfterContentChecked() {
